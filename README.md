@@ -1,4 +1,4 @@
-# Обязательные условия бота на питона
+# Обязательные условия бота на Python
 
 
 
@@ -103,4 +103,21 @@ logger.addHandler(stdout_handler)
 bot = Bot(token=os.getenv("BOT_TOKEN"), parse_mode=types.ParseMode.HTML)
 dp = Dispatcher(bot, storage=MemoryStorage())
 dp.middleware.setup(LoggingMiddleware())
+```
+Если в обрабатываете try except блок, то можно так же в ручную ввыводить лог
+```python
+# DB connection
+
+try:
+    connection = psycopg2.connect(
+        database=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT"),
+    )
+    connection.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
+    connection.autocommit = True
+except Exception as _ex:
+    logging.exception(f"Error while working with PostgreSQL - {_ex}")
 ```
