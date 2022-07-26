@@ -59,6 +59,7 @@ formatterError = logging.Formatter(
 )
 formatter = logging.Formatter("[%(asctime)s] - [%(levelname)s] -->  %(message)s")
 
+os.mkdir('logs')
 stdout_handler = logging.StreamHandler(sys.stdout)
 stdout_handler.setLevel(logging.DEBUG)
 stdout_handler.setFormatter(formatter)
